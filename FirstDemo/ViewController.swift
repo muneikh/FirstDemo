@@ -8,13 +8,23 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var simpleLabel: UILabel!
     @IBOutlet weak var simpleTextField: UITextField!
     
     @IBAction func changeName(sender: AnyObject) {
-        simpleLabel.text = simpleTextField.text;
+        simpleLabel.text = "Hello, " + simpleTextField.text! + "!";
+        self.simpleTextField.resignFirstResponder();
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true);
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder();
+        return false;
     }
     
     override func viewDidLoad() {
