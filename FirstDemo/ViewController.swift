@@ -18,6 +18,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.simpleTextField.resignFirstResponder();
     }
     
+    @IBOutlet weak var timeLabel: UILabel!
+    
+    @IBAction func refreshTime(sender: AnyObject) {
+        let now = NSDate();
+        var formatter = NSDateFormatter();
+        formatter.dateFormat = "HH:mm a";
+        
+        timeLabel.text = formatter.stringFromDate(now);
+    }
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true);
     }
